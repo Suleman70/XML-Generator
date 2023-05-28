@@ -9,7 +9,12 @@ import java.awt.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-//TODO java.lang.NullPointerException: Cannot invoke "java.io.File.exists()" because the return value of "javax.swing.JFileChooser.getSelectedFile()" is null
+
+
+//This class is responsible for generating the GUI for the user to interact with
+
+//TODO: Try/Catch is consistent with the boolean expressions.
+
 public class GUI{
 
     //GUI Features Fields
@@ -196,11 +201,6 @@ public class GUI{
                 completeLabel.setText("");
                 XMLFileDuplication xml = new XMLFileDuplication();
                 Boolean xmlCheck =xml.executeDuplication(noOfDuplications, fileName, directorySelected, true, i); //Executing Duplication
-
-                if(xmlCheck == false){
-                    errMsg.setText("<html><span style='color:red'>Something Went Wrong... Try reopening</span></html>");
-                    break;
-                }
 
                 String filePathway = directorySelected + '/' + fileName + i + ".xml";
                 xml.changeDuplicationDate(filePathway, (Date) fromDateImp.getModel().getValue(), (Date) toDateImp.getModel().getValue()); //Changing the modification date
