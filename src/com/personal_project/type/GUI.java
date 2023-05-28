@@ -155,8 +155,10 @@ public class GUI{
         //Event Listener for Submit Button - Executing the Duplication
         submitButton.addActionListener((e -> {
             Thread thread = new Thread(() -> {
+
                 try {
-                    submitButtonActionListener();
+                     submitButtonActionListener();
+
                 }
                 catch(Exception ex){
                     System.out.println(ex);
@@ -193,9 +195,16 @@ public class GUI{
             for (int i = 1; i <= noOfDuplications; i++) {
                 completeLabel.setText("");
                 XMLFileDuplication xml = new XMLFileDuplication();
-                xml.executeDuplication(noOfDuplications, fileName, directorySelected, true, i); //Executing Duplication
+                Boolean xmlCheck =xml.executeDuplication(noOfDuplications, fileName, directorySelected, true, i); //Executing Duplication
+
+                if(xmlCheck == false){
+                    errMsg.setText("<html><span style='color:red'>Something Went Wrong... Try reopening</span></html>");
+                    break;
+                }
+
                 String filePathway = directorySelected + '/' + fileName + i + ".xml";
                 xml.changeDuplicationDate(filePathway, (Date) fromDateImp.getModel().getValue(), (Date) toDateImp.getModel().getValue()); //Changing the modification date
+
                 int percentComplete = (int) (((double) i / noOfDuplications) * 100);
                 progressBar.setValue(percentComplete);
             }
