@@ -1,22 +1,18 @@
 package com.personal_project.type;
 
 import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 //Developed by Suleman70
 //This class is responsible for creating an XML file that can duplicate itself and also modify its creation date
@@ -80,10 +76,12 @@ public class XMLFileDuplication implements CustomFileDuplication {
     private  synchronized Document getDocument(){
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder(); //Static factory method
-            return builder.parse("src/files/xml_template.xml");
+            InputStream xmlFile = XMLFileDuplication.class.getResourceAsStream("/files/xml_template.xml"); //InputStream to enable JAR finding the file while execting
+            return builder.parse(xmlFile);
+
         }
         catch(Exception e) {
-            System.out.println("Something went wrong");
+            System.out.println(e);
         }
         return null;
     }
