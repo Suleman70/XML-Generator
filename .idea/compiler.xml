@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Personal_Project_2" />
+        <module name="XML_Generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="Personal_Project_2" target="11" />
+      <module name="XML_Generator" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
