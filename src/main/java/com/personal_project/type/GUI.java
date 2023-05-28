@@ -10,6 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+
+//This class is responsible for generating the GUI for the user to interact with
+
 //TODO: Try/Catch is consistent with the boolean expressions.
 
 public class GUI{

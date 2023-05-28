@@ -10,7 +10,6 @@ import java.util.Date;
 public interface CustomFileDuplication {
 
     //Enters the custom tag alongside the description of it. Returns true if successful
-    //Customize represents whether the duplication should have custom attributes
     public boolean executeDuplication(int noOfTimes, String templateName, String pathway,boolean customize, int fileNumber);
 
     //Changing the mdofiication of the file, given the pathway of the String

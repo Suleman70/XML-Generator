@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-//Developed by Suleman70
 //This class is responsible for creating an XML file that can duplicate itself and also modify its creation date
 
 public class XMLFileDuplication implements CustomFileDuplication {
