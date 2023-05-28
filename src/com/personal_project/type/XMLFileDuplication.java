@@ -18,8 +18,8 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-//TODO: Fix the code a bit, its works but just tidy it up
-
+//Developed by Suleman70
+//This class is responsible for creating an XML file that can duplicate itself and also modify its creation date
 
 public class XMLFileDuplication implements CustomFileDuplication {
 
@@ -27,7 +27,7 @@ public class XMLFileDuplication implements CustomFileDuplication {
 
     //Executes the duplication mechanism
     @Override
-    public  boolean executeDuplication(int noOfTimes, String templateName, String pathway, boolean customize, int fileNumber) {
+    public synchronized boolean executeDuplication(int noOfTimes, String templateName, String pathway, boolean customize, int fileNumber) {
         try {
                 Document document = getDocument();
                 if(customize == true) {
@@ -43,13 +43,10 @@ public class XMLFileDuplication implements CustomFileDuplication {
                 transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
                 transformer.transform(new DOMSource(document), new StreamResult(new File(file)));
                 System.out.println("XML file saved successfully!");
-
-
-
-
             return true;
         }
         catch (Exception e) {
+
                 System.out.println(e);
                 return false;
         }
@@ -59,7 +56,7 @@ public class XMLFileDuplication implements CustomFileDuplication {
 
     //Changing the mdofiication of the file, given the pathway of the String
     @Override
-    public void changeDuplicationDate(String pathway, Date from, Date to){
+    public synchronized void changeDuplicationDate(String pathway, Date from, Date to){
 
         //Generating Random Date
 
@@ -80,7 +77,7 @@ public class XMLFileDuplication implements CustomFileDuplication {
 
 
     //Gets the document for XML DOM from the filepath
-    private Document getDocument(){
+    private  synchronized Document getDocument(){
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder(); //Static factory method
             return builder.parse("src/files/xml_template.xml");
